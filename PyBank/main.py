@@ -31,6 +31,7 @@ with open(csvpath, newline='') as csvfile:
         final_profit = int(row[1])
         monthly_profits = final_profit - initial_profit
         profit_change.append(monthly_profits)
+        month_count.append(row[0])
         average_profit = round(monthly_profits/months)
         print(f'Average Change: ${average_profit}')
 
