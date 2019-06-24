@@ -33,11 +33,11 @@ with open(csvpath, 'r') as csvfile:
         average_profit = (monthly_profits/months)
         print("Average Change: " + str(average_profit))
 
-        if monthly_profits > increase[1]:
-            increase[1] = monthly_profits
-            increase[0] = row[0]
-        else monthly_profits < decrease [1]:
-                decrease[1] = monthly_profits
-                decrease[0] = row[0]
-        print(f'Greatest Increase in Profits: {increase[0]} (${increase[1]}')
-        print(f'Greatest Decrease in Profits: {decrease[0]} (${decrease[1]}')
+        #if (monthly_profits > increase[1]):
+            #increase[1] = monthly_profits
+            #increase[0] = column[0]
+        #else (monthly_profits < decrease[1]):
+            #decrease[1] = monthly_profits
+            #decrease[0] = column[0]
+        #print(f'Greatest Increase in Profits: {increase[0]} (${increase[1]}')
+        #print(f'Greatest Decrease in Profits: {decrease[0]} (${decrease[1]}')
