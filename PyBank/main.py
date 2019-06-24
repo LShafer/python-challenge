@@ -41,23 +41,3 @@ with open(csvpath, 'r') as csvfile:
                 decrease[0] = row[0]
         print(f'Greatest Increase in Profits: {increase[0]} (${increase[1]}')
         print(f'Greatest Decrease in Profits: {decrease[0]} (${decrease[1]}')
-        #profit = profit + [profit_change]
-
-        #for i in range(0,len(row[1]) -1):
-            #profit_change.append(int(final_profit[i+1]-int(initial_profit[i])))
-
-            
-    #for i[0]
-    #total = int(0)
-    #while i < len(budget_data):
-        #total = total + budget_data[i]
-        #i = i + 1
-    #print("Total: " + int(net_total))    
-
-#def Average(budget_data):
-    #i = int(0)
-    #total = int(0)
-    #while i < len(budget_data):
-        #total = total + budget_data[i]
-        #i = i + 1
-    #print("Average Change: " + int(total/len(budget_data)))
