@@ -15,4 +15,22 @@ with open(csvpath, newline='') as csvfile:
     print("Election Results")
     print("------------------------")
 
+    for row in csvreader:
+        total_votes += 1
+        print(f'Total Votes: {total_votes}')
+        print("------------------------")
+
+    #list of candidate_list
+    #append.row[] // column 3
+
+    #if candidate is on list then count until name changes
     
+    #percentage candidate/total_votes
+
+    #winner max(total votes)
+
+    #print 
+
+    #output to election.txt
+
+
