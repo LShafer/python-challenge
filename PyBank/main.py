@@ -2,53 +2,61 @@ import os
 import csv
 csvpath = os.path.join('..', 'PyBank', 'budget_data.csv')
 
-file_output = "results.txt"
-
 with open(csvpath, newline='') as csvfile:
     csvreader = csv.reader(csvfile, delimiter=',')
     csv_header = next(csvreader, None)
     
     #define variables
     months = 0
-    month_count = []
-    total_profit = 0
-    initial_profit = 0
-    profit_change = []
-    greatest_increase = 0
+    profit = 0
+    total_profit = []
+    date = []
+    month_change_list = []
     increase_month = 0
-    greatest_decrease = 0
     decrease_month = 0
+
     
     for row in csvreader:
         #count months
         months += 1
+
+        #create list of dates
+        date.append(row[0])
        
         #calculate total profit
-        total_profit += int(row[1])
+        profit += int(row[1])
+        total_profit.append(int(row[1]))
         
         #calculate profit change
-        final_profit = int(row[1])
-        monthly_profits = final_profit - initial_profit
-        profit_change.append(monthly_profits)
-        month_count.append(row[0])
-        average_profit = round(monthly_profits/months)
+    for i in range(len(total_profit)-1):
+        month_change_list.append(total_profit[i+1]-total_profit[i])
         
-        #calculate greatest increase/decrease
-        if greatest_increase < int(row[1]):
-            greatest_increase = int(row[1])
-            increase_month = row[0]
-        if greatest_decrease > int(row[1]):
-            greatest_decrease = int(row[1])
-            decrease_month = row[0]
+highest_rev = max(month_change_list)
+lowest_rev = min(month_change_list)
 
-    #print results
-    print("Financial Analysis")
-    print("--------------------------------------")   
-    print(f'Total Months: {months}')
-    print(f'Total Revenue: ${total_profit}')
-    print(f'Average Change: ${average_profit}')
-    print(f'Greatest Increase in Profits: {increase_month} ${greatest_increase}')
-    print(f'Greatest Decrease in Profits: {decrease_month} ${greatest_decrease}')
-    print("--------------------------------------")
+increase_month = date[month_change_list.index(highest_rev)+1]
+decrease_month = date[month_change_list.index(lowest_rev)+1]
+
+#print results
+print("Financial Analysis")
+print("--------------------------------------")   
+print(f'Total Months: {months}')
+print(f'Total Revenue: ${profit}')
+print(f'Average Change: ${round(sum(month_change_list)/len(month_change_list))}')
+print(f'Greatest Increase in Profits: {increase_month} (${highest_rev})')
+print(f'Greatest Decrease in Profits: {decrease_month} (${lowest_rev})')
+print("--------------------------------------")
     
-    #output to txt
+#output to txt
+output_file = "budget.txt"
+os.path.join('..', 'PyBank', 'budget.txt')
+with open(output_file, 'w') as text_file:
+
+    print("Financial Analysis \n", file=text_file)
+    print("------------------------ \n", file=text_file)
+    print(f'Total Months: {months} \n', file=text_file)
+    print(f'Total Revenue: ${profit} \n', file=text_file)
+    print(f'Average Change: ${round(sum(month_change_list)/len(month_change_list))} \n', file=text_file)
+    print(f'Greatest Increase in Profits: {increase_month} (${highest_rev}) \n', file=text_file)
+    print(f'Greatest Decrease in Profits: {decrease_month} (${lowest_rev}) \n', file=text_file)
+    print("------------------------ \n", file=text_file)

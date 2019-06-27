@@ -35,7 +35,7 @@ with open(csvpath, newline='') as csvfile:
         elif (row[2] == "Li"):
             li_votes += 1
             
-        elif (row[2] == "O'Tooley"):
+        else:
             otooley_votes += 1
            
     #percentage candidate/total_votes
@@ -53,33 +53,35 @@ with open(csvpath, newline='') as csvfile:
     print(f'Correy: {correy_percentage:.3%} ({correy_votes})')
     print(f'Li: {li_percentage:.3%} ({li_votes})')
     print(f'OTooley: {otooley_percentage:.3%} ({otooley_votes})')
-    print("------------------------------")
+    print("------------------------")
 
     #determine winner 
-    winner = max(f'{khan_votes} {correy_votes} {li_votes} {otooley_votes}')
+    winner = max(khan_votes, correy_votes, li_votes, otooley_votes)
     if winner == khan_votes:
         print("Winner: " + "Khan")
     elif winner == correy_votes:
         print("Winner: " + "Correy")
     elif winner == li_votes:
         print("Winner: " + "Li")
-    elif winner == otooley_votes:
+    else:
         print("Winner: " + "O'Tooley")
-        print("------------------------------")
+    print("------------------------")
 
 
 
     #output to election.txt
-    file_output = "election.txt"
+    output_file = "election.txt"
+    os.path.join('..', 'PyPoll', 'election.txt')
+    with open(output_file, 'w') as text_file:
 
-    print("Election Results")
-    print("------------------------")
-    print(f'Total Votes: {total_votes}')
-    print("------------------------")
-    print(f'Khan: {khan_percentage:.3%} ({khan_votes})')
-    print(f'Correy: {correy_percentage:.3%} ({correy_votes})')
-    print(f'Li: {li_percentage:.3%} ({li_votes})')
-    print(f'OTooley: {otooley_percentage:.3%} ({otooley_votes})')
-    print("------------------------------")
-
+        print("Election Results \n", file=text_file)
+        print("------------------------ \n", file=text_file)
+        print(f'Total Votes: {total_votes}', file=text_file)
+        print("------------------------ \n", file=text_file)
+        print(f'Khan: {khan_percentage:.3%} ({khan_votes}) \n', file=text_file)
+        print(f'Correy: {correy_percentage:.3%} ({correy_votes}) \n', file=text_file)
+        print(f'Li: {li_percentage:.3%} ({li_votes}) \n', file=text_file)
+        print(f'OTooley: {otooley_percentage:.3%} ({otooley_votes}) \n', file=text_file)
+        print("------------------------ \n", file=text_file)
+        print(f'Winner: {winner}', file=text_file)
 
